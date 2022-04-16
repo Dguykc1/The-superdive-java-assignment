@@ -28,12 +28,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserFileController {
     private final Logger logger = LoggerFactory.getLogger(UserFileController.class);
 
-    private  final UserFileService fileService;
+    private  final UserFileService userFileService;
     private final UserClientService userService;
     private final ReplyActionMessages userActionMessages;
 
-    public UserFileController(UserFileService fileService, UserClientService userService, ReplyActionMessages userActionMessages) {
-        this.fileService = fileService;
+    public UserFileController(UserFileService userFileService, UserClientService userService, ReplyActionMessages userActionMessages) {
+        this.userFileService = userFileService;
         this.userService = userService;
         this.userActionMessages = userActionMessages;
     }
@@ -48,7 +48,7 @@ public class UserFileController {
         Integer userId = user.getUserid();
         file.setUserid(userId);
 
-        if (fileService.findOneFile(multipartFile.getOriginalFilename()) !=null ){
+        if (userFileService.findOneFile(multipartFile.getOriginalFilename()) !=null ){
             redirectAttributes.addFlashAttribute("errorMessage", userActionMessages.fileNameAlreadyExists);
 
         }else if (multipartFile.getOriginalFilename().isEmpty()){
@@ -58,7 +58,7 @@ public class UserFileController {
         else {
 
             try {
-                fileService.upload(file, multipartFile);
+                userFileService.upload(file, multipartFile);
 
                 redirectAttributes.addFlashAttribute("successMessage", userActionMessages.fileUploadSuccess);
                 return "redirect:/result";
@@ -78,7 +78,7 @@ public class UserFileController {
     public String deleteCredential(@PathVariable Integer fileId, RedirectAttributes redirectAttributes){
 
         try{
-            fileService.delete(fileId);
+            userFileService.delete(fileId);
 
             redirectAttributes.addFlashAttribute("successMessage", userActionMessages.fileDeleteSuccessful);
             return "redirect:/result";
@@ -94,7 +94,7 @@ public class UserFileController {
     @RequestMapping("/{fileId}/view")
     public ResponseEntity<Resource> downloadFile(@PathVariable Integer fileId){
         try {
-            UserFileClassModel file = fileService.findById(fileId);
+            UserFileClassModel file = userFileService.findById(fileId);
 
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType(file.getContenttype()))

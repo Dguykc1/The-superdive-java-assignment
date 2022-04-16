@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface UserCredentialMapper {
     //I used small letters in writing my querries
-    @Select("select * from CREDENTIALS where userid = #{userId}")
+    @Select("select * from CREDENTIALS where userid = #{userid}")
     List<UserCredentialsClass> listAllTheCredentials(Integer userid);
 
     @Select("select * from CREDENTIALS WHERE credentialid = #{credentialid}")

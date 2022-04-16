@@ -32,9 +32,9 @@ public class HomeControllerClass {
     public String getHomePage(Model model, Authentication authentication){
         UserModelClass user = userClientService.getUser(authentication.getName());
 
-        String emptyString = "";
-        UserCredentialsClass credential = new UserCredentialsClass(0, emptyString, emptyString, emptyString, emptyString, user.getUserid());
-        UserNoteModel note = new UserNoteModel(0, emptyString, emptyString, user.getUserid());
+        String nothingSring = "";
+        UserCredentialsClass credential = new UserCredentialsClass(0, nothingSring, nothingSring, nothingSring, nothingSring, user.getUserid());
+        UserNoteModel note = new UserNoteModel(0, nothingSring, nothingSring, user.getUserid());
 
         model.addAttribute("clientNotes",userNoteService.getNotes(user.getUserid()));
         model.addAttribute("listOfCredentials", userCredentialService.listAllCredentials(user.getUserid()));

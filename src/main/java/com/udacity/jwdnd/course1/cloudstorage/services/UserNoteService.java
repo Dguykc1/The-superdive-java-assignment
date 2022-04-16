@@ -17,25 +17,25 @@ public class UserNoteService {
         return noteMapper.insert(note);
     }
 
-    public List<UserNoteModel> getNotes(Integer userId)
+    public List<UserNoteModel> getNotes(Integer userid)
     {
-        return noteMapper.getNotes(userId);
+        return noteMapper.getNotes(userid);
     }
 
     public void update(UserNoteModel note){
         noteMapper.updateNote(note);
     }
 
-    public UserNoteModel findOne(Integer noteId){
-        return noteMapper.findOne(noteId);
+    public UserNoteModel findOne(Integer noteid){
+        return noteMapper.findOne(noteid);
     }
 
-    public void deleteNote(Integer noteId){
-        noteMapper.deleteNote(noteId);
+    public void deleteNote(Integer noteid){
+        noteMapper.deleteNote(noteid);
     }
 
-    public UserNoteModel findByTitleAndDesc(String noteTitle, String noteDescription){
-        return noteMapper.findByTitleAndDesc(noteTitle, noteDescription);
+    public UserNoteModel findByTitleAndDesc(String notetitle, String notedescription){
+        return noteMapper.findByTitleAndDesc(notetitle, notedescription);
     }
 
 }

@@ -16,41 +16,41 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("/notes")
+@RequestMapping("/clientNotes")
 public class UserNoteControllerClass {
     private final Logger logger = LoggerFactory.getLogger(UserNoteControllerClass.class);
 
-    UserNoteService noteService;
-     UserClientService userService;
+    UserNoteService userNoteService;
+     UserClientService userClientService;
      ReplyActionMessages userActionMessages;
 
     public UserNoteControllerClass(UserNoteService noteService,
                                    UserClientService userService,
                                    ReplyActionMessages userActionMessages) {
 
-        this.noteService = noteService;
-        this.userService = userService;
+        this.userNoteService = noteService;
+        this.userClientService = userService;
         this.userActionMessages = userActionMessages;
     }
 
     @PostMapping
-    public String createOrUpdateNote(@ModelAttribute UserNoteModel note,
+    public String createOrUpdateNote(@ModelAttribute UserNoteModel noteModel,
                                      Authentication authentication,
                                      RedirectAttributes redirectAttributes){
 
-        UserModelClass user = userService.getUser(authentication.getName());
+        UserModelClass user = userClientService.getUser(authentication.getName());
 
-        Integer userId = user.getUserid();
-        note.setUserid(userId);
+        Integer userid = user.getUserid();
+        noteModel.setUserid(userid);
 
-        if (noteService.findByTitleAndDesc(note.getNoteTitle(), note.getNoteDescription()) != null){
+        if (userNoteService.findByTitleAndDesc(noteModel.getNotetitle(), noteModel.getNotedescription()) != null){
             redirectAttributes.addFlashAttribute("errorMessage", userActionMessages.noteAlreadyExists);
         }else
 
-        if (note.getNoteid() > 0){
+        if (noteModel.getNoteid() > 0){
 
             try {
-                noteService.update(note);
+                userNoteService.update(noteModel);
 
                 redirectAttributes.addFlashAttribute("successMessage", userActionMessages.noteUpdateSuccessful);
                 return "redirect:/result";
@@ -64,7 +64,7 @@ public class UserNoteControllerClass {
         }else {
 
             try {
-                noteService.createNote(note);
+                userNoteService.createNote(noteModel);
 
                 redirectAttributes.addFlashAttribute("successMessage", userActionMessages.noteCreationSuccessful);
                 return "redirect:/result";
@@ -80,11 +80,11 @@ public class UserNoteControllerClass {
         return "redirect:/result";
     }
 
-    @RequestMapping("/{noteId}/delete")
-    public String deleteNote(@PathVariable Integer noteId, RedirectAttributes redirectAttributes){
+    @RequestMapping("/{noteid}/delete")
+    public String deleteNote(@PathVariable Integer noteid, RedirectAttributes redirectAttributes){
         try {
 
-            noteService.deleteNote(noteId);
+            userNoteService.deleteNote(noteid);
 
             redirectAttributes.addFlashAttribute("successMessage", userActionMessages.noteDeleteSuccessful);
             return "redirect:/result";

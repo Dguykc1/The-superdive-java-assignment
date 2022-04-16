@@ -34,11 +34,11 @@ public class CredentialControllerClass {
         this.userService = userService;
         this.userActionMessages = userActionMessages;
     }
-    @RequestMapping("/{credentialId}/delete")
-    public String deleteCredential(@PathVariable Integer credentialId, RedirectAttributes redirectAttributes){
+    @RequestMapping("/{credentialid}/delete")
+    public String deleteCredential(@PathVariable Integer credentialid, RedirectAttributes redirectAttributes){
 
         try {
-            credentialService.deleteCredential(credentialId);
+            credentialService.deleteCredential(credentialid);
             redirectAttributes.addFlashAttribute("successMessage", userActionMessages.credentialDeletionSuccessful);
             return "redirect:/result";
 

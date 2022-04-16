@@ -83,8 +83,8 @@
                                             >Edit</button>
                                             <a class="btn btn-danger">Delete</a>
                                         </td>
-                                        <th scope="row" th:text="${allNote.noteTitle}" id="titleOfNote">Example Note Title</th>
-                                        <td th:text="${allNote.noteDescription}">Example Note Description </td>
+                                        <th scope="row" th:text="${allNote.notetitle}" id="titleOfNote">Example Note Title</th>
+                                        <td th:text="${allNote.notedescription}">Example Note Description </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -101,14 +101,14 @@
                                     </div>
                                     <div class="modal-body">
                                         <form action="#" method="POST" th:object="${itemInTheNote}" th:action="@{/notes}">
-                                            <input type="hidden" name="noteId" id="note-id" th:field="*{noteid}">
+                                            <input type="hidden" name="noteid" id="note-id" th:field="*{noteid}">
                                             <div class="form-group">
                                                 <label for="note-title" class="col-form-label">Title</label>
-                                                <input type="text" name= "noteTitle" class="form-control" id="note-title" maxlength="20" required th:field="*{noteTitle}">
+                                                <input type="text" name= "notetitle" class="form-control" id="note-title" maxlength="20" required th:field="*{notetitle}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="note-description" class="col-form-label">Description</label>
-                                                <textarea class="form-control" name="noteDescription" id="note-description" rows="5" maxlength="1000" th:field="*{noteDescription}" required></textarea>
+                                                <textarea class="form-control" name="notedescription" id="note-description" rows="5" maxlength="1000" th:field="*{notedescription}" required></textarea>
                                             </div>
                                             <button id="noteSubmit" type="submit" class="d-none"></button>
                                         </form>
@@ -143,7 +143,7 @@
                                                 th:onclick="javascript:showCredentialModal([[${credential}]],[[${encryptionService.decryptValue(credential.password,credential.key)}]])"
                                         >Edit</button>
                                         <a class="btn btn-danger" type="button" id="deleteCredentialButton"
-                                           th:href="@{'/credentials/' + ${allCredential.credentialId} + '/delete'}"
+                                           th:href="@{'/credentials/' + ${allCredential.credentialid} + '/delete'}"
                                         >Delete</a>
                                     </td>
                                     <th scope="row" id="credentialUrlText" th:text="${allCredential.url}">Example Credential URL</th>
@@ -200,16 +200,16 @@
         <!--For opening the note modal-->
         <script type="text/javascript">
             // For opening the note modal
-            function showNoteModal(noteId, noteTitle, noteDescription) {
-                $('#note-id').val(noteId ? noteId : '');
-                $('#note-title').val(noteTitle ? noteTitle : '');
-                $('#note-description').val(noteDescription ? noteDescription : '');
+            function showNoteModal(noteid, notetitle, notedescription) {
+                $('#note-id').val(noteid ? noteid : '');
+                $('#note-title').val(notetitle ? notetitle : '');
+                $('#note-description').val(notedescription ? notedescription : '');
                 $('#noteModal').modal('show');
             }
 
             // For opening the credentials modal
-            function showCredentialModal(credentialId, url, username, password) {
-                $('#credential-id').val(credentialId ? credentialId : '');
+            function showCredentialModal(credentialid, url, username, password) {
+                $('#credential-id').val(credentialid ? credentialid : '');
                 $('#credential-url').val(url ? url : '');
                 $('#credential-username').val(username ? username : '');
                 $('#credential-password').val(password ? password : '');
