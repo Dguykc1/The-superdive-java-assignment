@@ -57,9 +57,9 @@ public class CredentialControllerClass {
 
         UserModelClass user = userService.getUser(authentication.getName());
         Integer userid = user.getUserid();
-        credential.setUserId(userid);
+        credential.setUserid(userid);
 
-        if (credential.getCredentialid() >0){
+        if (credential.getCredentialid()!=null){
             try {
                 credentialService.update(credential);
                 redirectAttributes.addFlashAttribute("successMessage", userActionMessages.credentialUpdateSuccessful);

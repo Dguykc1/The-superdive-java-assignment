@@ -57,11 +57,11 @@ public class UserCredentialsClass {
         this.password = password;
     }
 
-    public Integer getUserId() {
+    public Integer getUserid() {
         return userid;
     }
 
-    public void setUserId(Integer userid) {
+    public void setUserid(Integer userid) {
         this.userid = userid;
     }
 }

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("/clientNotes")
+@RequestMapping("/notes")
 public class UserNoteControllerClass {
     private final Logger logger = LoggerFactory.getLogger(UserNoteControllerClass.class);
 
@@ -47,7 +47,7 @@ public class UserNoteControllerClass {
             redirectAttributes.addFlashAttribute("errorMessage", userActionMessages.noteAlreadyExists);
         }else
 
-        if (noteModel.getNoteid() > 0){
+        if (noteModel.getNoteid()!=null){
 
             try {
                 userNoteService.update(noteModel);

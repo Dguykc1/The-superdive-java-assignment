@@ -27,9 +27,6 @@ public class ClientErrorControllerClass implements ErrorController {
         return "error";
     }
 
-
-
-
     @Override
     public String getErrorPath() {
         return null;
