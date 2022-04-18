@@ -61,7 +61,7 @@ public class CredentialControllerClass {
 
         if (credential.getCredentialid()!=null){
             try {
-                credentialService.update(credential);
+                credentialService.create(credential);
                 redirectAttributes.addFlashAttribute("successMessage", userActionMessages.credentialUpdateSuccessful);
                 return "redirect:/result";
 
