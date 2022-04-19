@@ -61,10 +61,9 @@ public class CredentialControllerClass {
 
         if (credential.getCredentialid()!=null){
             try {
-                credentialService.create(credential);
+                credentialService.update(credential);
                 redirectAttributes.addFlashAttribute("successMessage", userActionMessages.credentialUpdateSuccessful);
                 return "redirect:/result";
-
             }catch (Exception e){
                 logger.error(e.getMessage());
                 redirectAttributes.addFlashAttribute("errorMessage", userActionMessages.credentialUpdateNotSuccessful);
@@ -76,7 +75,6 @@ public class CredentialControllerClass {
                 credentialService.create(credential);
                 redirectAttributes.addFlashAttribute("successMessage", userActionMessages.credentialCreationSuccessful);
                 return "redirect:/result";
-
             }catch (Exception e){
                 logger.error(e.getMessage());
                 redirectAttributes.addFlashAttribute("errorMessage", userActionMessages.credentialCreationNotSuccessful);
