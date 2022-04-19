@@ -140,8 +140,10 @@
                                 <tbody th:each="allCredential:${listOfCredentials}">
                                 <tr>
                                     <td>
-                                        <button type="button" class="btn btn-success"
-                                                th:onclick="javascript:showCredentialModal([[${credential}]],[[${encryptionService.decryptValue(credential.password,credential.key)}]])"
+                                        <button type="button" class="btn btn-success" id="editCredentialButton"
+                                                th:onclick="javascript:showCredentialModal([[${allCredential.credentialid}]],
+                                                [[${allCredential.url}]],[[${allCredential.username}]],
+                                [[${encryptionService.decryptValue(allCredential.password, allCredential.key)}]])"
                                         >Edit</button>
                                         <a class="btn btn-danger" type="button" id="deleteCredentialButton"
                                            th:href="@{'/credentials/' + ${allCredential.credentialid} + '/delete'}"
