@@ -30,6 +30,11 @@ public class UserFileService {
         return fileMapper.findOneFile(fileName);
     }
 
+
+
+    public void delete(Integer fileId){
+        fileMapper.delete(fileId);
+    }
     public int upload(UserFileClassModel file, MultipartFile multipartFile) throws Exception{
         file.setFilename(multipartFile.getOriginalFilename());
         file.setContenttype(multipartFile.getContentType());
@@ -37,9 +42,5 @@ public class UserFileService {
         file.setFiledata(multipartFile.getBytes());
 
         return fileMapper.upload(file);
-    }
-
-    public void delete(Integer fileId){
-        fileMapper.delete(fileId);
     }
 }

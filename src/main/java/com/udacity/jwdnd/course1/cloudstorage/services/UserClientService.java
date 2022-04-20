@@ -20,6 +20,11 @@ public class UserClientService {
         return userMapperInterface.getUserClient(username) == null;
     }
 
+
+
+    public UserModelClass getUser(String username) {
+        return userMapperInterface.getUserClient(username);
+    }
     public int createUser(UserModelClass user) {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
@@ -27,9 +32,5 @@ public class UserClientService {
         String encodedSalt = Base64.getEncoder().encodeToString(salt);
         String hashedPassword = hashService.getHashedValue(user.getPassword(), encodedSalt);
         return userMapperInterface.insert(new UserModelClass(null, user.getUsername(), encodedSalt, hashedPassword, user.getFirstname(), user.getLastname()));
-    }
-
-    public UserModelClass getUser(String username) {
-        return userMapperInterface.getUserClient(username);
     }
 }

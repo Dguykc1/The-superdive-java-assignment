@@ -14,7 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SignupControllerClass {
   private final  UserClientService userClientService;
 
+    public SignupControllerClass(UserClientService userClientService) {
+        this.userClientService = userClientService;
+    }
 
+
+    @GetMapping()
+    public String getSignUpPage(Model signUpmodel){
+        return "signup";
+    }
     @PostMapping()
     public String signupUser(@ModelAttribute UserModelClass user, Model model) {
         String signupErrorMessage = null;
@@ -40,14 +48,6 @@ return "login";
 
         return "signup";
     }
-    public SignupControllerClass(UserClientService userClientService) {
-        this.userClientService = userClientService;
-    }
 
-
-    @GetMapping()
-    public String getSignUpPage(Model signUpmodel){
-        return "signup";
-    }
 
 }

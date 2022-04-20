@@ -20,6 +20,10 @@ public class UserAuthenticationService implements AuthenticationProvider {
         this.hashService = hashService;
     }
     @Override
+    public boolean supports(Class<?> authentication) {
+        return authentication.equals(UsernamePasswordAuthenticationToken.class);
+    }
+    @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
@@ -35,8 +39,5 @@ public class UserAuthenticationService implements AuthenticationProvider {
 
         return null;
     }
-    @Override
-    public boolean supports(Class<?> authentication) {
-        return authentication.equals(UsernamePasswordAuthenticationToken.class);
-    }
+
 }

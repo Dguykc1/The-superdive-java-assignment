@@ -27,6 +27,12 @@ public class UserCredentialService {
     }
 
 
+
+
+    public int create(UserCredentialsClass credential){
+        encryptPassword(credential);
+        return credentialMapper.create(credential);
+    }
     private void encryptPassword(UserCredentialsClass credential) {
         SecureRandom random = new SecureRandom();
         byte[] key = new byte[16];
@@ -37,12 +43,6 @@ public class UserCredentialService {
         credential.setKey(encodedKey);
         credential.setPassword(encryptedPassword);
     }
-
-    public int create(UserCredentialsClass credential){
-        encryptPassword(credential);
-        return credentialMapper.create(credential);
-    }
-
     public void update(UserCredentialsClass credential){
         encryptPassword(credential);
         credentialMapper.update(credential);

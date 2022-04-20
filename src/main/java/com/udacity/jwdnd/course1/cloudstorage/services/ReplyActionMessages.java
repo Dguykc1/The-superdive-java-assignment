@@ -41,9 +41,9 @@ public ReplyActionMessages(){
   noteCreationSuccessful = "Note was successfully created in the server.";
   noteCreationNotSuccessful= "Note item creation failed. Please try again.";
   noteUpdateSuccessful = "Note was successfully updated in the server.";
-  noteUpdateNotSuccessful = "Note item update failed. Please try again.";
-  noteDeleteSuccessful = "Note was successfully deleted from the server.";
-  noteDeleteNotSuccessful= "Note item delete failed. Please try again.";
+  noteUpdateNotSuccessful = "User Note item update failed. Please try again.";
+  noteDeleteSuccessful = "User Note was successfully deleted from the server.";
+  noteDeleteNotSuccessful= "User Note item delete failed. Please try again.";
   noteAlreadyExists = "Please try again, Note already exists.";
 
   //Credential creation message instances

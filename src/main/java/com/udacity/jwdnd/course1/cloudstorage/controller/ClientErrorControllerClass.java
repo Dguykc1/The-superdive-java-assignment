@@ -10,9 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ClientErrorControllerClass implements ErrorController {
+
+
+    @Override
+    public String getErrorPath() {
+        return null;
+    }
     @GetMapping("/error")
     public String handleError(HttpServletRequest httpServletRequest){
-       Object status = httpServletRequest.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+        Object status = httpServletRequest.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
         if (status != null){
             Integer statusCode = Integer.valueOf(status.toString());
@@ -25,10 +31,5 @@ public class ClientErrorControllerClass implements ErrorController {
             }
         }
         return "error";
-    }
-
-    @Override
-    public String getErrorPath() {
-        return null;
     }
 }

@@ -33,6 +33,24 @@ public class UserNoteControllerClass {
         this.userActionMessages = userActionMessages;
     }
 
+
+
+    @RequestMapping("/{noteid}/delete")
+    public String deleteNote(@PathVariable Integer noteid, RedirectAttributes redirectAttributes){
+        try {
+
+            userNoteService.deleteNote(noteid);
+
+            redirectAttributes.addFlashAttribute("successMessage", userActionMessages.noteDeleteSuccessful);
+            return "redirect:/result";
+
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", userActionMessages.noteDeleteNotSuccessful);
+            return "redirect:/result";
+        }
+
+    }
     @PostMapping
     public String createOrUpdateNote(@ModelAttribute UserNoteModel noteModel,
                                      Authentication authentication,
@@ -78,22 +96,5 @@ public class UserNoteControllerClass {
         }
 
         return "redirect:/result";
-    }
-
-    @RequestMapping("/{noteid}/delete")
-    public String deleteNote(@PathVariable Integer noteid, RedirectAttributes redirectAttributes){
-        try {
-
-            userNoteService.deleteNote(noteid);
-
-            redirectAttributes.addFlashAttribute("successMessage", userActionMessages.noteDeleteSuccessful);
-            return "redirect:/result";
-
-        }catch (Exception e){
-            logger.error(e.getMessage());
-            redirectAttributes.addFlashAttribute("errorMessage", userActionMessages.noteDeleteNotSuccessful);
-            return "redirect:/result";
-        }
-
     }
 }
