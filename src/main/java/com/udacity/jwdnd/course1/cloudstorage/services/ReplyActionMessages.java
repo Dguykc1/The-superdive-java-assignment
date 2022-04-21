@@ -34,8 +34,8 @@ public ReplyActionMessages(){
   fileUploadFailed  = "User File upload to the server failed. Please try again.";
   fileDeleteSuccessful = "User File was successfully deleted from the server.";
   fileDeleteNotSuccessful = "User File item deletion failed. Please try again.";
-  fileNameAlreadyExists = "Sorry, you cannot upload two files with the same name in the database.";
-  didNotSelectAFile = "Please select a file to upload.";
+  fileNameAlreadyExists = "Sorry, you can't upload two files with the same name in the database.";
+  didNotSelectAFile = "Please choose a file to upload.";
 
   //Note creation message instances
   noteCreationSuccessful = "Note was successfully created in the server.";

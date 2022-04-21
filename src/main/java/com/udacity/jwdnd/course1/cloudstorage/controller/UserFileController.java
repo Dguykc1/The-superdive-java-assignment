@@ -62,6 +62,7 @@ public class UserFileController {
         file.setUserid(userId);
 
         if (userFileService.findOneFile(multipartFile.getOriginalFilename()) !=null ){
+            redirectAttributes.addFlashAttribute("error", true);
             redirectAttributes.addFlashAttribute("errorMessage", userActionMessages.fileNameAlreadyExists);
 
         }else if (multipartFile.getOriginalFilename().isEmpty()){

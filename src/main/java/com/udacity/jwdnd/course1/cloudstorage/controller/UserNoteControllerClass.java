@@ -62,6 +62,7 @@ public class UserNoteControllerClass {
         noteModel.setUserid(userid);
 
         if (userNoteService.findByTitleAndDesc(noteModel.getNotetitle(), noteModel.getNotedescription()) != null){
+            redirectAttributes.addFlashAttribute("error", true);
             redirectAttributes.addFlashAttribute("errorMessage", userActionMessages.noteAlreadyExists);
         }else
 

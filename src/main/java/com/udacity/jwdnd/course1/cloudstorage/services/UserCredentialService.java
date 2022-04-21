@@ -51,6 +51,9 @@ public class UserCredentialService {
     public void deleteCredential(Integer credentialId){
         credentialMapper.delete(credentialId);
     }
+    public String getKeyById(Integer id){
+        return credentialMapper.getKey(id);}
+    public Integer getLastCredentialId() {return credentialMapper.getLastCredentialId();}
 
 
 }

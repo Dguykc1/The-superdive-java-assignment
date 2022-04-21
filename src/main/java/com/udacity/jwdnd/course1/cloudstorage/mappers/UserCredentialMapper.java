@@ -23,4 +23,8 @@ public interface UserCredentialMapper {
 
     @Update("update CREDENTIALS SET url=#{url}, username =#{username}, key =#{key}, password =#{password} where credentialid =#{credentialid}")
     void update(UserCredentialsClass credential);
+    @Select("select key FROM CREDENTIALS where credentialid=#{credentialid}")
+    String getKey(Integer credentialId);
+    @Select("select max(credentialid) from CREDENTIALS")
+    Integer getLastCredentialId();
 }

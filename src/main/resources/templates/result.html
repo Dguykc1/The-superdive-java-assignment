@@ -15,7 +15,8 @@
                 <span th:text="${successMessage}">Your changes were successfully saved.</span>
                     Click <a th:href="@{/home}">here to return to Home Page</a>
             </div>
-            <div class="alert alert-danger fill-parent" th:if="${errorMessage}">
+            </div>
+            <div class="alert alert-danger fill-parent" th:if="${error}">
                 <h1 class="display-5">Error</h1>
                 <span th:text="${errorMessage}">Example Error Message</span>
                 <span>Click <a th:href="@{/home}">here</a> to return to Home Page.</span>
